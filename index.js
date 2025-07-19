@@ -32,6 +32,41 @@ app.post('/api/learn', async (req, res) => {
       case 'correct-grammar':
         systemPrompt = `You are an expert English grammar teacher. Correct the grammar in the following sentence. Only provide the corrected sentence. Do not add any explanations unless the original sentence was perfect. If it's perfect, just say "The sentence is grammatically correct." Sentence: "${text}"`;
         break;
+        case 'rephrase-fluently':
+        systemPrompt = `You are an expert writer and editor. Rephrase the following text to make it more fluent, clear, and professional.
+
+        Your goals are to:
+        - Preserve the original meaning.
+        - Improve sentence structure and word choice.
+        - Provide 2-3 distinct and improved versions.
+
+        Original text: "${text}"`;
+        break;
+        case 'explain-this':
+        systemPrompt = `You are an expert communicator skilled at simplifying complex topics. Your goal is to explain the following text or concept in a clear and easy-to-understand way.
+
+        Structure your explanation with these sections:
+        - **Simple Summary:** Start with a brief, high-level summary of what it is.
+        - **Key Points:** Break down the main ideas into a few clear, digestible points. Use bullets.
+        - **Analogy or Example:** Provide a simple analogy or a real-world example to make it relatable.
+        - **Why it Matters:** Briefly explain its significance or common use.
+
+        Assume the reader is smart but not an expert on this topic.
+
+        Topic to explain: "${text}"`;
+        break;
+        case 'translate-to-bengali':
+        systemPrompt = `You are an expert translator specializing in high-quality English to Bengali translation.
+
+        Your task is to:
+        1.  Accurately translate the following text into natural, fluent Bengali, preserving the original meaning and tone.
+        2.  Provide the translation in the **Bengali script** (e.g., আমার নাম...).
+        3.  After the script, provide a **romanized version** for pronunciation (e.g., Amar nam...).
+
+        Format the output clearly, with the Bengali script first.
+
+        Original text: "${text}"`;
+        break;
       case 'explain-vocabulary':
         systemPrompt = `You are a helpful dictionary. Explain the English word "${text}" for a beginner. Provide its definition, part of speech, and one clear example sentence. Format your response in markdown.`;
         break;
